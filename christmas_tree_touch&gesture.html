@@ -1206,9 +1206,6 @@
                 renderer.setSize(window.innerWidth, window.innerHeight);
                 composer.setSize(window.innerWidth, window.innerHeight);
             });
-            document.getElementById('file-input').addEventListener('change', handleImageUpload);
-            document.getElementById('folder-input').addEventListener('change', handleImageUpload);
-            document.getElementById('video-input').addEventListener('change', handleVideoUpload);
             camBtn.addEventListener('click', () => { initMediaPipe(); });
             window.addEventListener('keydown', (e) => {
                 const key = e.key.toLowerCase();
