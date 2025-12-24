@@ -6,7 +6,7 @@
   - @Style: Luxury Dashboard UI (Hidden by default, toggle with 'S')
 -->
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -261,6 +261,230 @@
             font-size: 14px;
             text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
         }
+
+        /* Scrolling Text */
+        .scrolling-text-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            overflow: hidden;
+            z-index: 100;
+            pointer-events: none;
+            background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.3));
+        }
+
+        .scrolling-text {
+            position: absolute;
+            white-space: nowrap;
+            font-family: 'Cinzel', 'Times New Roman', serif;
+            font-size: 18px;
+            color: #fceea7;
+            text-shadow: 0 0 20px rgba(252, 238, 167, 0.8),
+                         0 0 40px rgba(212, 175, 55, 0.5);
+            font-weight: 400;
+            letter-spacing: 3px;
+            animation: scroll-left 30s linear infinite;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        @keyframes scroll-left {
+            0% { left: 100%; }
+            100% { left: -100%; }
+        }
+
+        @media (max-width: 768px) {
+            .scrolling-text {
+                font-size: 14px;
+                letter-spacing: 2px;
+                animation: scroll-left 25s linear infinite;
+            }
+        }
+
+        /* ===== MOBILE OPTIMIZATION ===== */
+        @media (max-width: 768px) {
+            /* Tiêu đề */
+            h1 {
+                font-size: 10vw;
+                letter-spacing: 3px;
+                margin-bottom: 10px;
+            }
+
+            /* UI padding */
+            #ui-layer {
+                padding-top: 20px;
+            }
+
+            /* Controls - thu nhỏ và đặt lại vị trí */
+            .controls-wrapper {
+                top: 60px;
+                right: 10px;
+                gap: 6px;
+            }
+
+            .control-btn {
+                padding: 8px 12px;
+                font-size: 9px;
+                min-width: 90px;
+                letter-spacing: 1px;
+            }
+
+            .hint-text {
+                font-size: 8px;
+                max-width: 150px;
+                margin-top: 3px;
+            }
+
+            /* Mode buttons - tăng kích thước cho dễ tap */
+            #mode-bar {
+                bottom: 20px;
+                gap: 10px;
+            }
+
+            .mode-btn {
+                width: 55px;
+                height: 55px;
+                font-size: 22px;
+            }
+
+            /* Stats Dashboard - thu nhỏ */
+            #footer-stats {
+                bottom: 15px;
+                right: 10px;
+                width: 150px;
+                padding: 10px;
+                gap: 8px;
+            }
+
+            .stats-title {
+                font-size: 8px;
+                letter-spacing: 1px;
+                padding-bottom: 3px;
+            }
+
+            .stats-row {
+                font-size: 10px;
+            }
+
+            .stats-value {
+                font-size: 12px;
+            }
+
+            .map-container {
+                height: 70px;
+            }
+
+            /* Webcam - thu nhỏ */
+            #webcam-wrapper {
+                bottom: 90px;
+                left: 10px;
+                width: 100px;
+                height: 75px;
+            }
+
+            /* Debug info */
+            #debug-info {
+                font-size: 9px;
+                bottom: 3px;
+                left: 3px;
+            }
+
+            /* Message box */
+            #msg-box {
+                padding: 15px;
+                font-size: 12px;
+                min-width: 150px;
+            }
+
+            /* Loader */
+            .loader-text {
+                font-size: 12px;
+                letter-spacing: 2px;
+            }
+
+            .spinner {
+                width: 35px;
+                height: 35px;
+            }
+
+            /* Scrolling text container */
+            .scrolling-text-container {
+                height: 40px;
+            }
+        }
+
+        /* ===== VERY SMALL SCREENS (< 480px) ===== */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 12vw;
+                letter-spacing: 2px;
+            }
+
+            .controls-wrapper {
+                top: 50px;
+                right: 5px;
+            }
+
+            .control-btn {
+                padding: 6px 10px;
+                font-size: 8px;
+                min-width: 75px;
+            }
+
+            .hint-text {
+                font-size: 7px;
+                max-width: 120px;
+            }
+
+            #mode-bar {
+                bottom: 15px;
+                gap: 8px;
+            }
+
+            .mode-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+
+            /* Stats - thậm chí nhỏ hơn */
+            #footer-stats {
+                bottom: 10px;
+                right: 5px;
+                width: 130px;
+                padding: 8px;
+                gap: 6px;
+            }
+
+            .stats-title {
+                font-size: 7px;
+                letter-spacing: 0.5px;
+            }
+
+            .stats-row {
+                font-size: 9px;
+            }
+
+            .stats-value {
+                font-size: 11px;
+            }
+
+            .map-container {
+                height: 60px;
+            }
+
+            #webcam-wrapper {
+                width: 80px;
+                height: 60px;
+                bottom: 80px;
+            }
+
+            #debug-info {
+                font-size: 8px;
+            }
+        }
     </style>
     
     <style>
@@ -299,8 +523,12 @@
                     <input type="file" id="folder-input" webkitdirectory directory multiple>
                 </label>
                 <label class="control-btn">
-                    Select Files
+                    📷 Select Photos
                     <input type="file" id="file-input" multiple accept="image/*">
+                </label>
+                <label class="control-btn">
+                    🎥 Select Videos
+                    <input type="file" id="video-input" multiple accept="video/*">
                 </label>
             </div>
             <!-- 【修改】添加了 Press 'S' for Stats 的提示 -->
@@ -352,6 +580,13 @@
     </div>
     <div id="debug-info">Drag to rotate • Tap photo to view</div>
 
+    <!-- Scrolling Christmas Message -->
+    <div class="scrolling-text-container">
+        <div class="scrolling-text">
+            🎄 Chúc mừng giáng sinh nha bé Bu :33 Hy vọng rằng tụi mình sẽ cùng nhau đón thêm nhiều mùa giáng sinh nữa nhé. Anh yêu em ✨💕 🎄
+        </div>
+    </div>
+
     <script type="module">
         import * as THREE from 'three';
         import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
@@ -378,9 +613,11 @@
             },
             camera: { z: 50 },
             preload: {
-                autoScanLocal: true,
-                scanCount: 200, 
-                images: []
+                autoScanLocal: true,  // Auto-load images from folder
+                imageFolder: 'images/',
+                imageFiles: ['1.jpg', '2.jpg','3.jpg','4.jpg','5.jpg','6.jpg','7.jpg','8.jpg','9.jpg','10.jpg','11.jpg','12.jpg','13.jpg','14.jpg','15.jpg','16.jpg','17.jpg','18.jpg'],  // Add more image names here as you add them
+                videoFolder: 'videos/',
+                videoFiles: ['1.mp4', '2.mp4', '3.mp4', '4.mp4', '5.mp4', '6.mp4']  // Add your video files here: ['video1.mp4', 'video2.webm']
             }
         };
 
@@ -429,6 +666,7 @@
             createDust();
             createSnow();
             loadPredefinedImages();
+            loadPredefinedVideos();
             setupPostProcessing();
             setupEvents();
             setupTouchAndClick(); 
@@ -761,15 +999,20 @@
             }
         }
 
-        function addPhotoToScene(texture) {
+        function addPhotoToScene(texture, type = 'image', videoElement = null) {
             const frameGeo = new THREE.BoxGeometry(1.4, 1.4, 0.05);
             const frameMat = new THREE.MeshStandardMaterial({ color: CONFIG.colors.champagneGold, metalness: 1.0, roughness: 0.1 });
             const frame = new THREE.Mesh(frameGeo, frameMat);
             let width = 1.2; let height = 1.2;
-            if (texture.image) {
+            
+            if (type === 'video' && videoElement) {
+                const aspect = videoElement.videoWidth / videoElement.videoHeight;
+                if (aspect > 1) height = width / aspect; else width = height * aspect;
+            } else if (texture.image) {
                 const aspect = texture.image.width / texture.image.height;
                 if (aspect > 1) height = width / aspect; else width = height * aspect;
             }
+            
             const photoGeo = new THREE.PlaneGeometry(width, height);
             const photoMat = new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide });
             const photo = new THREE.Mesh(photoGeo, photoMat);
@@ -778,6 +1021,13 @@
             group.add(frame); group.add(photo);
             frame.scale.set(width/1.2, height/1.2, 1);
             const s = 0.8; group.scale.set(s,s,s);
+            
+            // Store video element reference for cleanup if needed
+            if (type === 'video') {
+                group.userData.videoElement = videoElement;
+                group.userData.isVideo = true;
+            }
+            
             photoMeshGroup.add(group);
             particleSystem.push(new Particle(group, 'PHOTO', false));
             updatePhotoLayout();
@@ -792,10 +1042,34 @@
                 reader.onload = (ev) => {
                     new THREE.TextureLoader().load(ev.target.result, (t) => {
                         t.colorSpace = THREE.SRGBColorSpace;
-                        addPhotoToScene(t);
+                        addPhotoToScene(t, 'image');
                     });
                 }
                 reader.readAsDataURL(f);
+            });
+        }
+
+        function handleVideoUpload(e) {
+            const files = e.target.files;
+            if(!files.length) return;
+            Array.from(files).forEach(f => {
+                if (!f.type.startsWith('video/')) return;
+                const video = document.createElement('video');
+                video.src = URL.createObjectURL(f);
+                video.muted = true;
+                video.loop = true;
+                video.playsInline = true;
+                video.setAttribute('playsinline', '');
+                video.setAttribute('webkit-playsinline', '');
+                video.style.display = 'none';
+                document.body.appendChild(video);
+                
+                video.addEventListener('loadeddata', () => {
+                    video.play().catch(e => console.warn('Video play failed:', e));
+                    const videoTexture = new THREE.VideoTexture(video);
+                    videoTexture.colorSpace = THREE.SRGBColorSpace;
+                    addPhotoToScene(videoTexture, 'video', video);
+                });
             });
         }
 //         <!--
@@ -808,13 +1082,51 @@
         function loadPredefinedImages() {
             const loader = new THREE.TextureLoader();
             if (CONFIG.preload.autoScanLocal) {
-                for (let i = 1; i <= CONFIG.preload.scanCount; i++) {
-                    const pathJpg = `./images/(${i}).jpg`;
-                    const pathPng = `./images/(${i}).png`;
-                    loader.load(pathJpg, (t) => { t.colorSpace = THREE.SRGBColorSpace; addPhotoToScene(t); }, undefined, () => {
-                             loader.load(pathPng, (t) => { t.colorSpace = THREE.SRGBColorSpace; addPhotoToScene(t); }, undefined, () => {} );
+                CONFIG.preload.imageFiles.forEach((filename) => {
+                    const path = CONFIG.preload.imageFolder + filename;
+                    loader.load(
+                        path,
+                        (texture) => {
+                            texture.colorSpace = THREE.SRGBColorSpace;
+                            addPhotoToScene(texture, 'image');
+                            console.log(`Loaded: ${filename}`);
+                        },
+                        undefined,
+                        (error) => {
+                            console.log(`Image not found: ${filename}`);
+                        }
+                    );
+                });
+            }
+        }
+
+        function loadPredefinedVideos() {
+            if (CONFIG.preload.autoScanLocal && CONFIG.preload.videoFiles.length > 0) {
+                CONFIG.preload.videoFiles.forEach((filename) => {
+                    const path = CONFIG.preload.videoFolder + filename;
+                    const video = document.createElement('video');
+                    video.src = path;
+                    video.muted = true;
+                    video.loop = true;
+                    video.playsInline = true;
+                    video.setAttribute('playsinline', '');
+                    video.setAttribute('webkit-playsinline', '');
+                    video.style.display = 'none';
+                    document.body.appendChild(video);
+                    
+                    video.addEventListener('loadeddata', () => {
+                        video.play().catch(e => console.warn(`Video play failed (${filename}):`, e));
+                        const videoTexture = new THREE.VideoTexture(video);
+                        videoTexture.colorSpace = THREE.SRGBColorSpace;
+                        addPhotoToScene(videoTexture, 'video', video);
+                        console.log(`Loaded video: ${filename}`);
                     });
-                }
+                    
+                    video.addEventListener('error', (e) => {
+                        console.log(`Video not found: ${filename}`);
+                        document.body.removeChild(video);
+                    });
+                });
             }
         }
 
@@ -908,6 +1220,7 @@
             });
             document.getElementById('file-input').addEventListener('change', handleImageUpload);
             document.getElementById('folder-input').addEventListener('change', handleImageUpload);
+            document.getElementById('video-input').addEventListener('change', handleVideoUpload);
             camBtn.addEventListener('click', () => { initMediaPipe(); });
             window.addEventListener('keydown', (e) => {
                 const key = e.key.toLowerCase();
